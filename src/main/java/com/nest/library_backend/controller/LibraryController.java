@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.swing.plaf.PanelUI;
+
 @RestController
 
 public class LibraryController {
@@ -45,7 +47,12 @@ public class LibraryController {
     }
 
     @PostMapping("userLogin")
-    public String UserLoginLibrary(){
-        return "Welcome to User Login Book page!";
+    public String UserLogin(){
+        return "Welcome to User Login page!";
+    }
+
+    @PostMapping("adminLogin")
+    public String AdminLogin(){
+        return "Welcome to Admin Login Page!";
     }
 }
