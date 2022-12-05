@@ -23,4 +23,9 @@ public class LibraryController {
     public String SearchLibrary(){
         return "Welcome to Search Book page!";
     }
+
+    @GetMapping("viewAll")
+    public String viewAllLibrary(){
+        return "Welcome to View all Books page!";
+    }
 }
