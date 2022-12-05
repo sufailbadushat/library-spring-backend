@@ -28,4 +28,9 @@ public class LibraryController {
     public String viewAllLibrary(){
         return "Welcome to View all Books page!";
     }
+
+    @PostMapping("edit")
+    public String EditLibrary(){
+        return "Welcome to Edit Book page!";
+    }
 }
