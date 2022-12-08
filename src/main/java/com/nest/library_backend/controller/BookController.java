@@ -1,24 +1,36 @@
 package com.nest.library_backend.controller;
 
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.nest.library_backend.dao.BookDao;
+import com.nest.library_backend.model.Book;
+import jakarta.persistence.Entity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
-import javax.swing.plaf.PanelUI;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 
-public class LibraryController {
+public class BookController {
+
+    @Autowired
+    BookDao bookDao;
 
     @GetMapping("/")
     public String HomePage(){
         return "Welcome to Home Page!";
     }
 
-    @PostMapping("add")
-    public String AddLibrary(){
-        return "Welcome to Add Book page!";
+
+    @CrossOrigin(origins = "*")
+    @PostMapping(path = "/add", consumes = "application/json",produces = "application/json")
+    public Map<String, String> AddLibrary(@RequestBody Book book){
+
+        bookDao.save(book);
+        HashMap<String,String> hashMap = new HashMap<>();
+        hashMap.put("status","success");
+        return hashMap;
     }
 
     @PostMapping("search")
