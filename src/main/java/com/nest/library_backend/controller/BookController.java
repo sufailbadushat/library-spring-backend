@@ -40,9 +40,17 @@ public class BookController {
         return (List<Book>) bookDao.findAll();
     }
 
-    @PostMapping("search")
-    public String SearchLibrary(){
-        return "Welcome to Search Book page!";
+    @CrossOrigin(origins = "*")
+    @PostMapping(path = "/search", consumes = "application/json",produces = "application/json")
+    public Map<String,String> SearchLibrary(@RequestBody Book book){
+        String title = String.valueOf(book.getTitle());
+        System.out.println(title);
+
+        bookDao.SearchBook(book.getTitle());
+
+        HashMap<String,String> hashMap = new HashMap<>();
+        hashMap.put("status","success");
+        return hashMap;
     }
 
 
