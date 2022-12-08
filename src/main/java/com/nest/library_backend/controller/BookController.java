@@ -50,33 +50,17 @@ public class BookController {
     }
 
 
-    @PostMapping("edit")
-    public String EditLibrary(){
-        return "Welcome to Edit Book page!";
+    @CrossOrigin(origins = "*")
+    @PostMapping(path = "/delete", consumes = "application/json",produces = "application/json")
+    public HashMap<String, String>  deleteBook(@RequestBody Book book){
+        String id=String.valueOf(book.getId());
+        System.out.println(id);
+        bookDao.DeleteBook(book.getId());
+
+        HashMap<String,String> hashMap=new HashMap<>();
+        hashMap.put("status","success");
+        return hashMap;
     }
 
-    @PostMapping("issue")
-    public String IssueLibrary(){
-        return "Welcome to Issue Book page!";
-    }
 
-    @PostMapping("delete")
-    public String DeleteLibrary(){
-        return "Welcome to Delete Book page!";
-    }
-
-    @PostMapping("userLogin")
-    public String UserLogin(){
-        return "Welcome to User Login page!";
-    }
-
-    @PostMapping("adminLogin")
-    public String AdminLogin(){
-        return "Welcome to Admin Login Page!";
-    }
-
-    @PostMapping("userRegister")
-    public String userRegister(){
-        return "Welcome to User Login page!";
-    }
 }
