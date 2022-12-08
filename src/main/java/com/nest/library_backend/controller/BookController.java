@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -33,15 +34,17 @@ public class BookController {
         return hashMap;
     }
 
+    @CrossOrigin(origins = "*")
+    @GetMapping(path = "/view", consumes = "application/json",produces = "application/json")
+    public List<Book> viewBooks(){
+        return (List<Book>) bookDao.findAll();
+    }
+
     @PostMapping("search")
     public String SearchLibrary(){
         return "Welcome to Search Book page!";
     }
 
-    @GetMapping("viewAll")
-    public String viewAllLibrary(){
-        return "Welcome to View all Books page!";
-    }
 
     @PostMapping("edit")
     public String EditLibrary(){
